@@ -4,7 +4,7 @@ var fs = require('fs');
 
 var dataFile = 'data.db';
 var clientIdFile = 'clientId.data';
-var current_data = {'is_on': false};
+var current_data = {'is_open': false};
 var clientId = 'sample-client-id';
 
 if (fs.existsSync(dataFile)) {
@@ -31,10 +31,10 @@ router.post('/', function(req, res, next) {
   var data = req.body;
   console.log('data received: ', data);
 
-  if (!data || typeof(data.is_on) !== 'boolean') {
+  if (!data || typeof(data.is_open) !== 'boolean') {
     res.sendStatus(400, 'invalid data format' + JSON.stringify(data));
   } else {
-    current_data = { 'is_on': data.is_on };
+    current_data = { 'is_open': data.is_open };
 
     fs.writeFileSync(dataFile, JSON.stringify(current_data), 'utf8');
 
