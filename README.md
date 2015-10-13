@@ -1,5 +1,12 @@
 # LabStateApi
 
+## Setup
+
+```javascript
+git clone https://github.com/fablab-ka/LabStateApi.git
+cd LabStateApi && ./build.sh && ./run.sh
+```
+
 ## Usage
 
 build the docker image with ./build.sh
