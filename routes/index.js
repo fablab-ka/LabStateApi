@@ -12,7 +12,10 @@ if (fs.existsSync(dataFile)) {
 }
 
 if (fs.existsSync(clientIdFile)) {
-  clientId = fs.readFileSync(clientIdFile, 'utf8');
+  clientId = fs.readFileSync(clientIdFile, 'utf8').trim();
+  console.log('client id file successfully read');
+} else {
+  console.warn('no client id file found.');
 }
 
 router.get('/', function(req, res, next) {
@@ -23,7 +26,7 @@ router.post('/', function(req, res, next) {
 
   var receivedClientId = req.get('clientId');
   if (receivedClientId !== clientId) {
-    console.error('invalid clientId', receivedClientId);
+    console.error('invalid clientId', '"' + receivedClientId + '"');
     res.sendStatus(403, 'incorrect clientId');
     return;
   }
