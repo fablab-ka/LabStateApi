@@ -1,1 +1,1 @@
-docker run --rm -p 3000:3000 --name labstateapi labstateapi
+docker run --restart=always -p 3000:3000 --name labstateapi labstateapi
